@@ -1,0 +1,73 @@
+{% extends 'core/base.html'%}
+{% load static book_tags %}
+{% block title %}Add Book{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h5 class="font-weight-light mb-4 text-center">Enter The Book Name That you want to add in inventory.</h5>
+        <!-- Custom rounded search bars with input group -->
+        <form action="" method="GET">
+          <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+            <div class="input-group">
+              <input type="search" placeholder="What're you searching for?" aria-describedby="button" class="form-control border-0 bg-light" id="search" name="q">
+              <div class="input-group-append">
+                <button id="button" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+        <!-- End -->
+
+      </div>
+    </div>
+  </div>
+          {% if books|length != 0 %}
+  <div id="results" class="row">
+      {% for book in books %}
+      <div class="col-lg-4 mb-4">
+                    <div class="card" id="book_{{forloop.counter}}">
+                      <img src="{{book.image}}" alt="" class="card-img-top" style="height:450px;">
+                      <div class="card-body">
+                          <span class="badge badge-warning">{% return_out_of book.book_id %}</span>
+                        <h5 class="card-title">{{book.title}}</h5>
+                        <p class="card-text">{{book.description|truncatewords:10}}</p>
+                       <a href="{% url 'add' %}?title={{book.title}}&book_id={{book.book_id}}&description={{book.description}}" id="bbook_{{forloop.counter}}" class="btn btn-primary">Add Book</a>
+                      </div>
+                     </div>
+                    </div>
+      {% endfor  %}
+
+          </div>
+          {% else %}
+
+          <h3 class="text-center title mt-4">Search Books here that you want to add in your inventory!</h3>
+      {%endif  %}
+
+</div>
+
+<!--<script src="{% static 'js/core.js' %}"></script>-->
+{% endblock content %}
+

@@ -1,0 +1,63 @@
+{% extends 'core/base.html'%}
+{% load static book_tags %}
+{% block title %}Books Inventory{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h2 class="font-weight-light mb-4 text-center">Books Inventory</h2>
+        <!-- Custom rounded search bars with input group -->
+        <!-- End -->
+
+      </div>
+    </div>
+  </div>
+              {% if books|length != 0 %}
+
+  <div id="results" class="row">
+      {% for book in books %}
+      <div class="col-lg-4 mb-4">
+                    <div class="card">
+                      <img src="{{book.image}}" alt="" class="card-img-top" style="height:450px;">
+                      <div class="card-body">
+                          <span class="badge badge-primary">{% return_out_of book.book_id %}</span>
+                        <h5 class="card-title">{{book.title}}</h5>
+                        <p class="card-text">{{book.description|truncatewords:30}}</p>
+                       <a  href="{% url 'update-book' book.id %}" class="btn btn-outline-primary btn-sm">Update Inventory</a>
+                        <a href="{% url 'delete-book' book.id %}" class="btn btn-outline-danger btn-sm">Delete Inventory</a>
+                      </div>
+                     </div>
+                    </div>
+      {% endfor  %}
+          </div>
+         {% else %}
+
+          <h3 class="text-center title mt-4">No Books are present in inventory!</h3>
+      {%endif  %}
+
+</div>
+
+
+<!--<script src="{% static 'js/core.js' %}"></script>-->
+{% endblock content %}
+

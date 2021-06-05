@@ -1,0 +1,44 @@
+{% extends 'core/base.html'%}
+{% load static book_tags %}
+{% block title %}Home{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h5 class="font-weight-light mb-4 text-center">This is an Book Inventory Project Using Google Books Api</h5>
+
+      <div class="text-center">
+        <h5>Can Get Code From: </h5> <a target="_blank" href="https://github.com/AvinashRajPurohit/BookInventory" class="btn btn-primary"><i class="fab fa-github"></i>Github</a>
+      </div>
+        <!-- End -->
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!--<script src="{% static 'js/core.js' %}"></script>-->
+{% endblock content %}
+
